@@ -63,9 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CharacterController2D.cs" />
-    <Compile Include="Assets\controller.cs" />
-    <Compile Include="Assets\movement.cs" />
+    <Compile Include="Assets\ChracterMovement.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.15f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -600,6 +598,12 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TerrainTools">
+      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.TerrainTools.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
       <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
@@ -608,6 +612,15 @@
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder">
+      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.Editor">
+      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
       <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
@@ -663,6 +676,12 @@
     <Reference Include="Unity.2D.Animation.Editor">
       <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
@@ -672,35 +691,14 @@
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TerrainTools.Editor">
+      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.TerrainTools.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
       <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TerrainTools">
-      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.TerrainTools.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TerrainTools.Editor">
-      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.TerrainTools.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder">
-      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.Editor">
-      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
-      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ProBuilder.AddOns.Editor">
-      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>F:/PDC projekt/G-T_repo/Copy Dog Projekt/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
