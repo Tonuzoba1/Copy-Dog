@@ -16,7 +16,7 @@ TagManager:
   - Player
   - Map
   - Background
-  - 
+  - Mobs
   - 
   - 
   - 
@@ -47,9 +47,9 @@ TagManager:
   - name: Map
     uniqueID: 1803503691
     locked: 0
-  - name: Mobs
-    uniqueID: 4086763857
-    locked: 0
   - name: Player
     uniqueID: 2144602647
+    locked: 0
+  - name: Mobs
+    uniqueID: 4086763857
     locked: 0
