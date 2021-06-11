@@ -93,14 +93,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4616641548551067757}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -146,6 +146,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 10
+  meatGetSpeed: 0
+  meatValue: 0
+  progressSlider: {fileID: 0}
+  meatSlider: {fileID: 0}
+  meatCounter: {fileID: 0}
 --- !u!114 &4616641548551067747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,3 +166,5 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   allyPrefab: {fileID: 8402507040594503799, guid: c13081928a4695d48b46fc5d1fa75b29,
     type: 3}
+  player: {fileID: 0}
+  chMv: {fileID: 0}

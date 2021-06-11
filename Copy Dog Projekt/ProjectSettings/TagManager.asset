@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Block
+  - EndOfMap
+  - Enemy
+  - Ally
   layers:
   - Default
   - TransparentFX
@@ -17,8 +22,8 @@ TagManager:
   - Map
   - Background
   - Mobs
-  - 
-  - 
+  - Enemy
+  - Allies
   - 
   - 
   - 
