@@ -85,8 +85,22 @@ public class EnemyCombat : MonoBehaviour
         
         //egy másodpercet vár az ütéssel - ezt majd ki kell szervezni változóba ha több fajta karakter lesz h változzon a cooldown
         //mindegyikre üt aki benne van a rangeben és így belekerül a tömbbe
-        if(hitAllies.Length != 0 && hitAllies[0] != null) { 
-        foreach (Collider2D ally in hitAllies)
+        if(hitAllies.Length != 0 && hitAllies[0] != null) {
+
+            if (hitAllies[0].tag == "Ally")
+            {
+                hitAllies[0].GetComponent<AllyCombat>().TakeDamage(attackDamage);
+            }
+
+            if (hitAllies[0].tag == "Player")
+            {
+                hitAllies[0].GetComponent<CharacterCombat>().TakeDamage(attackDamage);
+            }
+
+            //kiválasztja az elsőt a tömbből és azt sebzi így elkerülve a több krakter sebzését egyszerre
+
+
+            /*foreach (Collider2D ally in hitAllies)
         {
             combatInProgress = true;
                 if(ally.tag == "Ally")
@@ -99,8 +113,8 @@ public class EnemyCombat : MonoBehaviour
                     ally.GetComponent<CharacterCombat>().TakeDamage(attackDamage);
                 }
             Debug.Log("Damage " + ally.name);
-            }
-      }
+            }*/
+        }
         yield return wfs;
         hitInProgress = false;
 
@@ -115,7 +129,7 @@ public class EnemyCombat : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    //karakter halála
+    
     public void TakeDamage(int damage)
     {
         getDamage = damage;
@@ -129,6 +143,7 @@ public class EnemyCombat : MonoBehaviour
         }
     }
 
+    //karakter halála
     void Die()
     {
         PlayerStats.playerCoins += attackDamage / 2;

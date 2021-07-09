@@ -91,14 +91,17 @@ public class AllyCombat : MonoBehaviour
         //egy másodpercet vár az ütéssel - ezt majd ki kell szervezni változóba ha több fajta karakter lesz h változzon a cooldown
         //mindegyikre üt aki benne van a rangeben és így belekerül a tömbbe
         if (hitEnemies.Length != 0 && hitEnemies[0] != null) { 
-        foreach (Collider2D enemy in hitEnemies)
+        
+            //kiválasztja az elsőt a tömbből és azt sebzi így elkerülve a több krakter sebzését egyszerre
+            hitEnemies[0].GetComponent<EnemyCombat>().TakeDamage(attackDamage);
+            /*foreach (Collider2D enemy in hitEnemies)
         {
             combatInProgress = true;
             enemy.GetComponent<EnemyCombat>().TakeDamage(attackDamage);
             //Debug.Log("Damage " + enemy.name);
             
+        }*/
         }
-     }
 
         yield return wfs;
         hitInProgress = false;

@@ -22,7 +22,14 @@ public class Spawn : MonoBehaviour
     public GameObject enemyKnight;
 
 
-    public bool readyToSpawn = false;
+    private bool readyToSpawn = false;
+    private int spawnIndex = 0;
+    private int spawnTimeIndex = 0;
+
+    private bool endOfLvl = false;
+
+    public int[] scriptedSpawnOrder =   { 1, 1, 2, 2, 1, 3 };
+    public int[] scriptedTimeOrder =    { 1, 2, 6, 6, 5, 5 };
 
     public CharacterMovement chMv;
 
@@ -34,7 +41,7 @@ public class Spawn : MonoBehaviour
         spawnPoint = GameObject.Find("Spawner");
         enemySpawnPoint = GameObject.Find("EnemySpawner");
 
-        StartCoroutine(SpawnEnemy());
+       // StartCoroutine(SpawnEnemy());
     }
 
      //Update is called once per frame
@@ -42,10 +49,10 @@ public class Spawn : MonoBehaviour
     {
         //ellenség spawnolása
 
-        if (readyToSpawn)
+       /* if (readyToSpawn && !endOfLvl)
         {
             StartCoroutine(SpawnEnemy());
-        }
+        }*/
 
 
         //társak spawnolása
@@ -130,10 +137,12 @@ public class Spawn : MonoBehaviour
     {
         readyToSpawn = false;
 
-        int spawnDice = Random.Range(1, 5);
+        /*int spawnDice = Random.Range(1, 5);
         Debug.Log(spawnDice);
+        */
 
-        switch (spawnDice)
+
+        switch (scriptedSpawnOrder[spawnIndex])
         {
             case 1:
                 {
@@ -210,6 +219,9 @@ public class Spawn : MonoBehaviour
         }
 
 
+
+
+
         /*float spawnPointX = enemySpawnPoint.transform.position.x;
         float spawnPointY = enemySpawnPoint.transform.position.y;
 
@@ -221,9 +233,32 @@ public class Spawn : MonoBehaviour
         Instantiate(enemySwordsman, newSpawnPoint, Quaternion.identity);
         */
 
-        yield return new WaitForSeconds(7);
+        Debug.Log("Spawnoltam egy " + scriptedSpawnOrder[spawnIndex] + " ennyi idővel " + scriptedTimeOrder[spawnTimeIndex]);
+
+        //teszteli, hogy ha tovább lépne a tömbben akkor túlindexeli azt, Length-1 mivel az index 0-tól indul így a valóságban egyel kevesebbet mutat mint a valós pozíció
+        if (spawnIndex + 1 > scriptedSpawnOrder.Length-1 || spawnTimeIndex + 1 > scriptedTimeOrder.Length-1)
+        {
+            endOfLvl = true;
+            Debug.Log("Vége a lvl-nek " + endOfLvl);
+        }
+        else if(spawnIndex + 1 <= scriptedSpawnOrder.Length || spawnTimeIndex + 1 <= scriptedTimeOrder.Length)
+        {
+            Debug.Log("Növeltem de miért?");
+            spawnIndex++;
+            spawnTimeIndex++;
+
+        }
+
+        yield return new WaitForSeconds(scriptedTimeOrder[spawnTimeIndex]);
 
         readyToSpawn = true;
-        
+
+
+
+
+
+
     }
+
+
 }

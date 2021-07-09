@@ -89,7 +89,7 @@ public class CharacterCombat : MonoBehaviour
     IEnumerator Regen()
     {
         readyToRegen = false;
-        Debug.Log("wut");
+        //Debug.Log("wut");
 
         if (heroHealth < 100)
         {

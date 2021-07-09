@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Spawn.cs" />
     <Compile Include="Assets\Scripts\SpawnFriend.cs" />
     <Compile Include="Assets\Scripts\enemyMovement.cs" />
+    <Compile Include="Assets\SpawnEnemy.cs" />
     <Compile Include="Assets\SpellHit.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
