@@ -125,7 +125,6 @@ public class AllyCombat : MonoBehaviour
         hpSlider.value = currentHealth;
 
         DamagePopup();
-
         if (currentHealth <= 0)
         {
             Die();
@@ -148,4 +147,14 @@ public class AllyCombat : MonoBehaviour
         popupScript.setPopupText(getDamage);
 
     }
+
+     /*IEnumerator redColorEffect(){
+
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.color = new Color(1 ,1 ,1);
+
+            WaitForSeconds wfs = new WaitForSeconds(0.5f);
+            yield return wfs;
+        }*/
+
 }

@@ -151,6 +151,10 @@ MonoBehaviour:
   progressSlider: {fileID: 0}
   meatSlider: {fileID: 0}
   meatCounter: {fileID: 0}
+  hpSlider: {fileID: 0}
+  mpSlider: {fileID: 0}
+  hpCounter: {fileID: 0}
+  mpCounter: {fileID: 0}
 --- !u!114 &4616641548551067747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +168,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 0}
-  allyPrefab: {fileID: 8402507040594503799, guid: c13081928a4695d48b46fc5d1fa75b29,
-    type: 3}
-  player: {fileID: 0}
+  enemySpawnPoint: {fileID: 0}
+  swordsmanPrefab: {fileID: 0}
+  spearmanPrefab: {fileID: 0}
+  cavarlyPrefab: {fileID: 0}
+  armoredKnightPrefab: {fileID: 0}
+  wizardPrefab: {fileID: 0}
+  enemySwordsman: {fileID: 0}
+  enemyEliteSwordsman: {fileID: 0}
+  enemyCavarly: {fileID: 0}
+  enemyHammer: {fileID: 0}
+  enemyKnight: {fileID: 0}
   chMv: {fileID: 0}

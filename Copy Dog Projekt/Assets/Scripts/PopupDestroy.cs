@@ -6,6 +6,7 @@ using UnityEngine;
 public class PopupDestroy : MonoBehaviour
 {
     public float floatUpSpeed = 3f;
+    public float floatSideSpeed;
     public float damage;
 
     //ez maga a szöveg - nem a TMP UGUI az nem működik
@@ -15,12 +16,23 @@ public class PopupDestroy : MonoBehaviour
     {
         popUpText = GetComponent<TextMeshPro>();
         StartCoroutine(countdown());
+        RandomSideSpeed();
 
     }
 
     void Update()
     {
-        transform.position += new Vector3(0, floatUpSpeed) * Time.deltaTime;    
+        transform.position += new Vector3(floatSideSpeed, floatUpSpeed) * Time.deltaTime;
+
+        if (floatSideSpeed >= 0)
+        {
+            floatSideSpeed += 0.03f;
+        }
+        else
+        {
+            floatSideSpeed -= 0.03f;
+        }
+        popUpText.alpha -= 0.02f;
     }
 
     IEnumerator countdown()
@@ -38,4 +50,9 @@ public class PopupDestroy : MonoBehaviour
         popUpText.text = damage.ToString();
     }
 
+    private void RandomSideSpeed()
+    {
+        floatSideSpeed = Random.Range(-0.3f, 0.3f);
+
+    }
 }

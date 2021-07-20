@@ -174,7 +174,7 @@ MonoBehaviour:
   combatInProgress: 0
   hitInProgress: 0
   hitAllies: []
-  maxHealth: 100
+  maxHealth: 60
   getDamage: 0
   damagePopup: {fileID: 5403394944631793889, guid: 792bdca48c1b5b24fa7358422e4e95cd,
     type: 3}

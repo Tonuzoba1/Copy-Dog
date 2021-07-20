@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 //using UnityEngine.UIElements;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class CharacterMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
@@ -27,11 +28,12 @@ public class CharacterMovement : MonoBehaviour
     public TextMeshProUGUI mpCounter;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        Application.targetFrameRate = 60;
+    void Start() { 
+    
         rb = GetComponent<Rigidbody2D>();
         charComb = GetComponent<CharacterCombat>();
+
+        
 
         meatValue = 0;
 

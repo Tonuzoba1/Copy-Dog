@@ -22,14 +22,16 @@ public class Spawn : MonoBehaviour
     public GameObject enemyKnight;
 
 
-    private bool readyToSpawn = false;
+    /*private bool readyToSpawn = false;
     private int spawnIndex = 0;
     private int spawnTimeIndex = 0;
 
     private bool endOfLvl = false;
+    */
 
-    public int[] scriptedSpawnOrder =   { 1, 1, 2, 2, 1, 3 };
+    /*public int[] scriptedSpawnOrder =   { 1, 1, 2, 2, 1, 3 };
     public int[] scriptedTimeOrder =    { 1, 2, 6, 6, 5, 5 };
+    */
 
     public CharacterMovement chMv;
 
@@ -133,13 +135,13 @@ public class Spawn : MonoBehaviour
 
     }
 
-    IEnumerator SpawnEnemy()
+    /*IEnumerator SpawnEnemy()
     {
         readyToSpawn = false;
 
-        /*int spawnDice = Random.Range(1, 5);
-        Debug.Log(spawnDice);
-        */
+        //int spawnDice = Random.Range(1, 5);
+        //Debug.Log(spawnDice);
+           
 
 
         switch (scriptedSpawnOrder[spawnIndex])
@@ -217,21 +219,21 @@ public class Spawn : MonoBehaviour
 
 
         }
+        
 
 
 
 
+        //float spawnPointX = enemySpawnPoint.transform.position.x;
+        //float spawnPointY = enemySpawnPoint.transform.position.y;
 
-        /*float spawnPointX = enemySpawnPoint.transform.position.x;
-        float spawnPointY = enemySpawnPoint.transform.position.y;
+        //float random = Random.Range(-1f, 1f);
+        //Vector2 newSpawnPoint = new Vector2(spawnPointX, spawnPointY + random);
 
-        float random = Random.Range(-1f, 1f);
-        Vector2 newSpawnPoint = new Vector2(spawnPointX, spawnPointY + random);
+        //Debug.Log(newSpawnPoint);
 
-        Debug.Log(newSpawnPoint);
-
-        Instantiate(enemySwordsman, newSpawnPoint, Quaternion.identity);
-        */
+        //Instantiate(enemySwordsman, newSpawnPoint, Quaternion.identity);
+        
 
         Debug.Log("Spawnoltam egy " + scriptedSpawnOrder[spawnIndex] + " ennyi idővel " + scriptedTimeOrder[spawnTimeIndex]);
 
@@ -258,7 +260,7 @@ public class Spawn : MonoBehaviour
 
 
 
-    }
+    }*/
 
 
 }

@@ -63,26 +63,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CoinCounter.cs" />
-    <Compile Include="Assets\EffectMovement.cs" />
     <Compile Include="Assets\Low_Swordman\Demo\Scripts\CameraController.cs" />
     <Compile Include="Assets\Low_Swordman\Demo\Scripts\Demo_GM.cs" />
     <Compile Include="Assets\Low_Swordman\Demo\Scripts\GroundSensor.cs" />
     <Compile Include="Assets\Low_Swordman\Demo\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Low_Swordman\Demo\Scripts\Swordman.cs" />
-    <Compile Include="Assets\MenuButtons.cs" />
-    <Compile Include="Assets\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\AllyCombat.cs" />
     <Compile Include="Assets\Scripts\AllyMovement.cs" />
+    <Compile Include="Assets\Scripts\AppConfig.cs" />
     <Compile Include="Assets\Scripts\CharacterCombat.cs" />
     <Compile Include="Assets\Scripts\CharacterMovement.cs" />
+    <Compile Include="Assets\Scripts\CoinCounter.cs" />
+    <Compile Include="Assets\Scripts\EffectMovement.cs" />
     <Compile Include="Assets\Scripts\EnemyCombat.cs" />
+    <Compile Include="Assets\Scripts\MenuButtons.cs" />
+    <Compile Include="Assets\Scripts\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\PopupDestroy.cs" />
     <Compile Include="Assets\Scripts\Spawn.cs" />
+    <Compile Include="Assets\Scripts\SpawnEnemy.cs" />
     <Compile Include="Assets\Scripts\SpawnFriend.cs" />
+    <Compile Include="Assets\Scripts\SpellHit.cs" />
+    <Compile Include="Assets\Scripts\UseItem.cs" />
     <Compile Include="Assets\Scripts\enemyMovement.cs" />
-    <Compile Include="Assets\SpawnEnemy.cs" />
-    <Compile Include="Assets\SpellHit.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -116,7 +118,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
-    <Compile Include="Assets\UseItem.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
