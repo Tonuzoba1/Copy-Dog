@@ -17,6 +17,10 @@ public class enemyMovement : MonoBehaviour
 
     void Start()
     {
+        Physics2D.IgnoreLayerCollision(12, 12);
+        Physics2D.IgnoreLayerCollision(12, 9);
+        //Physics2D.IgnoreLayerCollision(12, 14);
+
         enemyCombatScript = gameObject.GetComponent<EnemyCombat>();
         endOfMap = GameObject.Find("EndOfMap");
         rb = GetComponent<Rigidbody2D>();
@@ -29,8 +33,12 @@ public class enemyMovement : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        if(collision.collider.tag == "Ground")
+        {
+            Debug.Log("földet ért");
+        }
 
-        //Debug.Log(collision.collider.name);
+
         if (collision.collider.tag == "EndOfMap")
         {
             Destroy(gameObject);
@@ -39,7 +47,7 @@ public class enemyMovement : MonoBehaviour
         //stop
         if ((collision.collider.tag == "Ally" || collision.collider.tag == "Player") && !isCollidedwAlly)
         {
-            Debug.Log("Fight!");
+            Debug.Log("Az ellenség megállt ");
             speed = 0;
             rb.velocity = new Vector2(speed, rb.velocity.y);
             isCollidedwAlly = true;
@@ -59,7 +67,7 @@ public class enemyMovement : MonoBehaviour
     {
         if (collision.collider.tag == "Ally" && !isCollidedwAlly)
         {
-            Debug.Log("Fight!");
+
             speed = 0;
             rb.velocity = new Vector2(speed, rb.velocity.y);
             isCollidedwAlly = true;

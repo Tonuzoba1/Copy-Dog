@@ -15,10 +15,17 @@ public class AllyMovement : MonoBehaviour
 
     void Start()
     {
+        Physics2D.IgnoreLayerCollision(13, 13);
+        Physics2D.IgnoreLayerCollision(13, 9);
+
         endOfMap = GameObject.Find("EndOfMap");
         allyCombatScript = gameObject.GetComponent<AllyCombat>();
         rb = GetComponent<Rigidbody2D>();
         speed = maxSpeed;
+
+        GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
+
+
     }
 
     void FixedUpdate()
@@ -38,13 +45,19 @@ public class AllyMovement : MonoBehaviour
         //stop - harcnál megállítja a karaktert és jelez az 'isCollidedwEnemy' vel h ütközött ezt veszi át a combat script
         if (collision.collider.tag == "Enemy" && !isCollidedwEnemy)
         {
-            Debug.Log("Fight!");
             speed = 0;
             rb.velocity = new Vector2(speed, rb.velocity.y);
             isCollidedwEnemy = true;
         }
- 
-        
+
+        if (collision.collider.tag == "Fort" && !isCollidedwEnemy)
+        {
+            speed = 0;
+            rb.velocity = new Vector2(speed, rb.velocity.y);
+            isCollidedwEnemy = true;
+        }
+
+
 
     }
 
@@ -52,11 +65,16 @@ public class AllyMovement : MonoBehaviour
     public void OnCollisionExit2D(Collision2D collision)
     {
             MoveForward();
-        
     }
 
+    public void EnemyInRange()
+    {
+        speed = 0;
+        rb.velocity = new Vector2(speed, rb.velocity.y);
+        isCollidedwEnemy = true;
+    }
 
-    void MoveForward()
+    public void MoveForward()
     {
          
         speed = maxSpeed;
@@ -68,7 +86,15 @@ public class AllyMovement : MonoBehaviour
     {
         if (collision.collider.tag == "Enemy" && !isCollidedwEnemy)
         {
-            Debug.Log("Fight!");
+            Debug.Log("A társad még egyhelyben áll!");
+            speed = 0;
+            rb.velocity = new Vector2(speed, rb.velocity.y);
+            isCollidedwEnemy = true;
+        }
+
+        if (collision.collider.tag == "Fort" && !isCollidedwEnemy)
+        {
+            Debug.Log("A társad megállt");
             speed = 0;
             rb.velocity = new Vector2(speed, rb.velocity.y);
             isCollidedwEnemy = true;

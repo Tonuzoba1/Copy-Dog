@@ -9,6 +9,7 @@ TagManager:
   - EndOfMap
   - Enemy
   - Ally
+  - Fort
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Mobs
   - Enemy
   - Allies
-  - 
+  - Detectorobjects
   - 
   - 
   - 
@@ -52,9 +53,18 @@ TagManager:
   - name: Map
     uniqueID: 1803503691
     locked: 0
+  - name: Enviroment
+    uniqueID: 2128493737
+    locked: 0
   - name: Player
     uniqueID: 2144602647
     locked: 0
+  - name: StartZoneBottom
+    uniqueID: 2865971129
+    locked: 0
   - name: Mobs
     uniqueID: 4086763857
+    locked: 0
+  - name: StartZoneTop
+    uniqueID: 1753493265
     locked: 0

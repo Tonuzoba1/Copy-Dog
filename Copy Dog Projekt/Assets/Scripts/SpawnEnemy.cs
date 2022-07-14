@@ -19,24 +19,124 @@ public class SpawnEnemy : MonoBehaviour
 
     private bool endOfLvl = false;
 
-    public int[] scriptedSpawnOrder = { 1, 1, 2, 2, 1, 3 };
-    public int[] scriptedTimeOrder = { 3, 4, 6, 6, 5, 5 };
+    [SerializeField] private int[] scriptedSpawnOrder; //=     { 1, 1, 2, 2, 1, 3, 4, 1, 5 };
+    [SerializeField] private float[] scriptedTimeOrder;// =    { 3, 3, 6, 6, 5, 5, 5, 6, 2 };
 
     // Start is called before the first frame update
     void Start()
     {
+
         enemySpawnPoint = transform.position;
 
-        StartCoroutine(SpawnNewEnemy());
+        //StartCoroutine(SpawnNewEnemy());
+        StartCoroutine(SpawnRandomEnemy());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (readyToSpawn && !endOfLvl)
+        /*if (readyToSpawn && !endOfLvl)
         {
             StartCoroutine(SpawnNewEnemy());
+        }*/
+
+        if (readyToSpawn && !endOfLvl)
+        {
+            StartCoroutine(SpawnRandomEnemy());
         }
+    }
+
+    IEnumerator SpawnRandomEnemy()
+    {
+        readyToSpawn = false;
+        int unlockedEnemy = PlayerStats.reachedLevel+1;
+        if(unlockedEnemy > 6)
+        {
+            unlockedEnemy = 6;
+        }
+
+        int randomIndex = Random.Range(1, unlockedEnemy);
+        float randomTime = Random.Range(4, 7);
+
+        switch (randomIndex)
+        {
+            case 1:
+                {
+                    float spawnPointX = enemySpawnPoint.x;
+                    float spawnPointY = enemySpawnPoint.y;
+
+                    float random = Random.Range(-1f, 1f);
+                    Vector2 newSpawnPoint = new Vector2(spawnPointX, spawnPointY + random);
+
+                    //Debug.Log(newSpawnPoint);
+
+                    Instantiate(enemySwordsman, newSpawnPoint, Quaternion.identity);
+
+                    break;
+                }
+            case 2:
+                {
+                    float spawnPointX = enemySpawnPoint.x;
+                    float spawnPointY = enemySpawnPoint.y;
+
+                    float random = Random.Range(-1f, 1f);
+                    Vector2 newSpawnPoint = new Vector2(spawnPointX, spawnPointY + random);
+
+                    //Debug.Log(newSpawnPoint);
+
+                    Instantiate(enemyHammer, newSpawnPoint, Quaternion.identity);
+
+                    break;
+                }
+            case 3:
+                {
+                    float spawnPointX = enemySpawnPoint.x;
+                    float spawnPointY = enemySpawnPoint.y;
+
+                    float random = Random.Range(-1f, 1f);
+                    Vector2 newSpawnPoint = new Vector2(spawnPointX, spawnPointY + random);
+
+                    //Debug.Log(newSpawnPoint);
+
+                    Instantiate(enemyEliteSwordsman, newSpawnPoint, Quaternion.identity);
+
+                    break;
+                }
+            case 4:
+                {
+                    float spawnPointX = enemySpawnPoint.x;
+                    float spawnPointY = enemySpawnPoint.y;
+
+                    float random = Random.Range(-1f, 1f);
+                    Vector2 newSpawnPoint = new Vector2(spawnPointX, spawnPointY + random);
+
+                    //Debug.Log(newSpawnPoint);
+
+                    Instantiate(enemyCavarly, newSpawnPoint, Quaternion.identity);
+
+                    break;
+                }
+            case 5:
+                {
+                    float spawnPointX = enemySpawnPoint.x;
+                    float spawnPointY = enemySpawnPoint.y;
+
+                    float random = Random.Range(-1f, 1f);
+                    Vector2 newSpawnPoint = new Vector2(spawnPointX, spawnPointY + random);
+
+                    //Debug.Log(newSpawnPoint);
+
+                    Instantiate(enemyKnight, newSpawnPoint, Quaternion.identity);
+
+                    break;
+                }
+
+
+        }
+
+        yield return new WaitForSeconds(randomTime);
+
+        readyToSpawn = true;
     }
 
     IEnumerator SpawnNewEnemy()

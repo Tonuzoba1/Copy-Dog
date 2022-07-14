@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CharacterCombat : MonoBehaviour
 {
-    public int heroHealth;
+    public float heroHealth;
     public int heroMana;
 
     public int healthMultiplier;
@@ -23,7 +23,7 @@ public class CharacterCombat : MonoBehaviour
 
     public GameObject gameOverPanel;
 
-    public int getDamage;
+    public float getDamage;
     public GameObject damagePopup;
     public Transform damagePopupPos;
 
@@ -49,12 +49,11 @@ public class CharacterCombat : MonoBehaviour
     }
 
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
 
         getDamage = damage;
         heroHealth -= (damage);
-        Debug.Log("Megütötték a hőst!");
 
         DamagePopup();
 
@@ -65,12 +64,18 @@ public class CharacterCombat : MonoBehaviour
         }
     }
 
+    public void PushBack()
+    {
+        transform.position = new Vector3(transform.position.x - 2, transform.position.y, transform.position.z);
+        //GetComponent<Rigidbody2D>().AddForce( new Vector2(-1 , 0), ForceMode2D.Impulse);
+        Debug.Log("hős elrepül");
+    }
+
     public void GameOver()
     {
         
             //megállítja az időt és megjeleníti a gameover panelt
             Time.timeScale = 0;
-            Debug.Log("A hős halott");
             gameOverPanel.SetActive(true);
         
     }

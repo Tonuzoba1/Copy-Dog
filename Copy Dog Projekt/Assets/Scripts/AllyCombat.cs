@@ -7,43 +7,69 @@ public class AllyCombat : MonoBehaviour
 {
 
     private AllyMovement allyMvmntScript;
+    public Animator animator;
 
     //támadás
-    public Transform attackPoint;
-    public float attackRange = 0.3f;
-    public int attackDamage = 10;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float attackRange = 0.3f;
+    [SerializeField] private float attackDamage = 10;
 
-    public LayerMask enemyLayers;
+    [SerializeField] private LayerMask enemyLayers;
 
-    public bool combatInProgress = false;
-    public bool hitInProgress = false;
+                     public bool combatInProgress = false;
+    [SerializeField] private bool hitInProgress = false;
+    [SerializeField] private bool isSworsdsman = false;
+    [SerializeField] private bool isSpearman = false;
+    [SerializeField] private bool isCavarly = false;
+    [SerializeField] private bool isKnight = false;
+    [SerializeField] private bool isMage = false;
 
+    /// <summary>
+    /// Az éppen az érzékelési körében található karakterek tömbbje
+    /// </summary>
     public Collider2D[] hitEnemies;
     //támadás vége
 
     //saját értékek
-    public int MaxHealth;
-    private int currentHealth;
+    public float MaxHealth;
+    public float currentHealth;
 
+    [SerializeField] private float hitSpeed;
     //saját értékek vége
 
     //damage popup
-    public int getDamage;
+    public float getDamage;
     public GameObject damagePopup;
     public Transform damagePopupPos;
     //damage popup vége
 
     //hp slider
     public Slider hpSlider;
+    [SerializeField] GameObject hpSliderObject;
     //hp slider vége
+
+    [SerializeField] private ParticleSystem mageHitEffect;
+    [SerializeField] private GameObject mageHitEffectGO;
 
 
     private void Start()
     {
         allyMvmntScript = gameObject.GetComponent<AllyMovement>();
+
+        //upgraddel növeljük az értékeket
+        /*MaxHealth = MaxHealth * PlayerStats.swordsmanPowerup;
+        attackDamage = attackDamage * PlayerStats.swordsmanPowerup;*/
+
+
+
+        AllyStatUpdater();
+
         currentHealth = MaxHealth;
         hpSlider.maxValue = MaxHealth;
         hpSlider.value = currentHealth;
+
+        mageHitEffect.Stop();
+        Debug.Log(MaxHealth + " " + attackDamage + " " + hitSpeed);
 
     }
 
@@ -54,13 +80,88 @@ public class AllyCombat : MonoBehaviour
         if (allyMvmntScript.isCollidedwEnemy && !hitInProgress)
         {
             Attack();
-            //Debug.Log(allyMvmntScript.isCollidedwEnemy);
-
         }
+
+        if(!combatInProgress && !hitInProgress)
+        {
+            allyMvmntScript.MoveForward();
+        }
+
+        /*if(hitEnemies.Length > 1 && hitEnemies[0] == null)
+        {
+            Debug.Log("minek ment oda?");
+            hitEnemies[0] = hitEnemies[1];
+            hitEnemies[1] = null;
+            
+        }*/
 
         
     }
 
+    /// <summary>
+    /// Frissíti a player statban az új értékét a társ karaktereknek
+    /// </summary>
+    public void AllyStatUpdater()
+    {
+        //frissíti a statban az új értékét a karaktereknek
+
+        if (isSworsdsman)
+        {
+            MaxHealth = PlayerStats.allyStats[0].hp;
+            attackDamage = PlayerStats.allyStats[0].attack;
+            hitSpeed = PlayerStats.allyStats[0].hitSpeed;
+
+            PlayerStats.allyStats[0].hp = MaxHealth;
+            PlayerStats.allyStats[0].attack = attackDamage;
+            PlayerStats.allyStats[0].hitSpeed = hitSpeed;
+
+            }
+        else if (isSpearman)
+        {
+            MaxHealth = PlayerStats.allyStats[1].hp;
+            attackDamage = PlayerStats.allyStats[1].attack;
+            hitSpeed = PlayerStats.allyStats[1].hitSpeed;
+
+            PlayerStats.allyStats[1].hp = MaxHealth;
+            PlayerStats.allyStats[1].attack = attackDamage;
+            PlayerStats.allyStats[1].hitSpeed = hitSpeed;
+
+        }
+        else if (isCavarly)
+        {
+            MaxHealth = PlayerStats.allyStats[2].hp;
+            attackDamage = PlayerStats.allyStats[2].attack;
+            hitSpeed = PlayerStats.allyStats[2].hitSpeed;
+
+            PlayerStats.allyStats[2].hp = MaxHealth;
+            PlayerStats.allyStats[2].attack = attackDamage;
+            PlayerStats.allyStats[2].hitSpeed = hitSpeed;
+
+        }
+        else if (isKnight)
+        {
+            MaxHealth = PlayerStats.allyStats[3].hp;
+            attackDamage = PlayerStats.allyStats[3].attack;
+            hitSpeed = PlayerStats.allyStats[3].hitSpeed;
+
+            PlayerStats.allyStats[3].hp = MaxHealth;
+            PlayerStats.allyStats[3].attack = attackDamage;
+            PlayerStats.allyStats[3].hitSpeed = hitSpeed;
+
+        }
+        else if (isMage)
+        {
+            MaxHealth = PlayerStats.allyStats[4].hp;
+            attackDamage = PlayerStats.allyStats[4].attack;
+            hitSpeed = PlayerStats.allyStats[4].hitSpeed;
+
+            PlayerStats.allyStats[4].hp = MaxHealth;
+            PlayerStats.allyStats[4].attack = attackDamage;
+            PlayerStats.allyStats[4].hitSpeed = hitSpeed;
+
+        }
+
+    }
     void Attack()
     {
         //detect
@@ -72,35 +173,80 @@ public class AllyCombat : MonoBehaviour
             //ha elfogytak az enemyk akkor vége az ütésneknek is és a harcnak is
             combatInProgress = false;
             hitInProgress = false;
+
+
         } else
         {
             StartCoroutine(utes());
-
         }
         //hit
-        
-
     }    
 
     //időzíti az ütést
     IEnumerator utes()
     {
         hitInProgress = true;
-        WaitForSeconds wfs = new WaitForSeconds(1f);
+        WaitForSeconds wfs = new WaitForSeconds(hitSpeed);
         
-        //egy másodpercet vár az ütéssel - ezt majd ki kell szervezni változóba ha több fajta karakter lesz h változzon a cooldown
-        //mindegyikre üt aki benne van a rangeben és így belekerül a tömbbe
-        if (hitEnemies.Length != 0 && hitEnemies[0] != null) { 
-        
-            //kiválasztja az elsőt a tömbből és azt sebzi így elkerülve a több krakter sebzését egyszerre
-            hitEnemies[0].GetComponent<EnemyCombat>().TakeDamage(attackDamage);
-            /*foreach (Collider2D enemy in hitEnemies)
-        {
-            combatInProgress = true;
-            enemy.GetComponent<EnemyCombat>().TakeDamage(attackDamage);
-            //Debug.Log("Damage " + enemy.name);
+        if (hitEnemies.Length != 0 && hitEnemies[0] != null) 
+        {   
+            if(isSpearman)
+            {
+                if(hitEnemies[0].GetComponent<FortBehav>() != null)
+                {
+                    hitEnemies[0].GetComponent<FortBehav>().TakeDamage(attackDamage);
+
+                } else if(hitEnemies[0].GetComponent<EnemyCombat>() != null)
+                {
+                    hitEnemies[0].GetComponent<EnemyCombat>().PushBack();
+                    hitEnemies[0].GetComponent<EnemyCombat>().TakeDamage(attackDamage);
+                }
             
-        }*/
+            } else if (isMage)
+            {
+                if (hitEnemies[0].GetComponent<FortBehav>() != null)
+                {
+                    hitEnemies[0].GetComponent<FortBehav>().TakeDamage(attackDamage);
+                    if (mageHitEffect.isPlaying)
+                    {
+                        mageHitEffect.Stop();
+                    }
+
+                    if (!mageHitEffect.isPlaying)
+                    {
+                        mageHitEffect.Play();
+                    }
+
+                } else if(hitEnemies[0].GetComponent<EnemyCombat>() != null)
+                {
+                    foreach (Collider2D enemy in hitEnemies)
+                    {
+                        combatInProgress = true;
+                        enemy.GetComponent<EnemyCombat>().TakeDamage(attackDamage);
+
+                    }
+                    if (mageHitEffect.isPlaying)
+                    {
+                        mageHitEffect.Stop();
+                    }
+
+                    if (!mageHitEffect.isPlaying)
+                    {
+                        mageHitEffect.Play();
+                    }
+                }
+            } else if(isSworsdsman || isCavarly || isKnight)
+            {
+                if(hitEnemies[0].GetComponent<FortBehav>() != null)
+                {
+                    hitEnemies[0].GetComponent<FortBehav>().TakeDamage(attackDamage);
+
+                } else if(hitEnemies[0].GetComponent<EnemyCombat>() != null)
+                {
+                    hitEnemies[0].GetComponent<EnemyCombat>().TakeDamage(attackDamage);
+                }
+            }
+
         }
 
         yield return wfs;
@@ -118,8 +264,13 @@ public class AllyCombat : MonoBehaviour
     }
 
     //karakter halála
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
+        if (!hpSliderObject.activeSelf)
+        {
+            hpSliderObject.SetActive(true);
+        }
+
         getDamage = damage;
         currentHealth -= damage;
         hpSlider.value = currentHealth;
@@ -131,8 +282,17 @@ public class AllyCombat : MonoBehaviour
         }
     }
 
+    public void PushBack()
+    {
+        transform.position = new Vector3(transform.position.x - 2, transform.position.y, transform.position.z);
+        //GetComponent<Rigidbody2D>().AddForce(new Vector2(-500, 0), ForceMode2D.Impulse);
+    }
+
     void Die()
     {
+        //animator.SetBool("Dead", true);
+        //Destroy(gameObject, 1f);
+
         Destroy(gameObject);
     }
     //karakter halála vége
@@ -148,13 +308,5 @@ public class AllyCombat : MonoBehaviour
 
     }
 
-     /*IEnumerator redColorEffect(){
-
-        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        spriteRenderer.color = new Color(1 ,1 ,1);
-
-            WaitForSeconds wfs = new WaitForSeconds(0.5f);
-            yield return wfs;
-        }*/
 
 }

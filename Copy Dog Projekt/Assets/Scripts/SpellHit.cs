@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A karakter spelljét idézi meg. Jelenleg az 1-es itemen és a karakteren van meghívva ezért ha mindkét helyen aktív akkor kétszer fog lőni egyszerre. 
+/// </summary>
 public class SpellHit : MonoBehaviour
 {
+    private bool spellInProgress;
 
     public CharacterCombat charComb;
 
@@ -25,7 +29,13 @@ public class SpellHit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("j") && !spellInProgress)
+        {
+            spellInProgress = true;
+            SpellTakesDamage();
+            Debug.Log("magic");
+            spellInProgress = false;
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -36,12 +46,13 @@ public class SpellHit : MonoBehaviour
         Gizmos.DrawWireSphere(spellHitPoint.position, spellRange);
     }
 
+
     public void SpellTakesDamage()
     {
         
         if(charComb.heroMana >= 10)
         {
-            Debug.Log("magic");
+            
             spellEffect.Play();
             charComb.heroMana -= 10;
 
@@ -51,7 +62,7 @@ public class SpellHit : MonoBehaviour
                 spellEffect.Play();
             }
 
-            
+
 
             hitEnemies = Physics2D.OverlapCircleAll(spellHitPoint.position, spellRange, enemyLayers);
 

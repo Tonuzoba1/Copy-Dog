@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 3452210396258637864}
   - component: {fileID: 2913467223468651056}
   - component: {fileID: 2380881420277301949}
+  - component: {fileID: 1132275802147429360}
   m_Layer: 12
   m_Name: EnemyEliteSwordsman
   m_TagString: Enemy
@@ -135,7 +136,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -208203439
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300114, guid: f5f1c19ce87450f4b97f8b363746558d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -156,14 +157,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8226931206655543043}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -182,7 +183,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.16654968, y: 0.048984528}
+  m_Offset: {x: 0.16654968, y: 0.05693817}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -193,7 +194,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.875885, y: 1.6351242}
+  m_Size: {x: 0.875885, y: 1.8577728}
   m_EdgeRadius: 0
 --- !u!114 &2913467223468651056
 MonoBehaviour:
@@ -233,13 +234,35 @@ MonoBehaviour:
     m_Bits: 8448
   combatInProgress: 0
   hitInProgress: 0
+  isHammer: 0
   hitAllies: []
-  maxHealth: 100
+  maxHealth: 50
+  hitSpeed: 0.5
   getDamage: 0
   damagePopup: {fileID: 5403394944631793889, guid: 792bdca48c1b5b24fa7358422e4e95cd,
     type: 3}
   damagePopupPos: {fileID: 7660785860015590794}
   hpSlider: {fileID: 8472833684952231661}
+  hpSliderObject: {fileID: 5423758184437838782}
+--- !u!95 &1132275802147429360
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226931206655543043}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e35a0d90a4d0f64c8ce04dc52cc1557, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &9049607494931791094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -250,11 +273,16 @@ PrefabInstance:
     - target: {fileID: 3688598874938234436, guid: a7562f443619ac14a9b31aecff9bd87e,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3688598874938234436, guid: a7562f443619ac14a9b31aecff9bd87e,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950683012950642504, guid: a7562f443619ac14a9b31aecff9bd87e,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8392841083750717507, guid: a7562f443619ac14a9b31aecff9bd87e,
@@ -375,13 +403,19 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 9049607494931791094}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5423758184437838782 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3950683012950642504, guid: a7562f443619ac14a9b31aecff9bd87e,
+    type: 3}
+  m_PrefabInstance: {fileID: 9049607494931791094}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8472833684952231661 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 577348374615134747, guid: a7562f443619ac14a9b31aecff9bd87e,
     type: 3}
   m_PrefabInstance: {fileID: 9049607494931791094}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5423758184437838782}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}

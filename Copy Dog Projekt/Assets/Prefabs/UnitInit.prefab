@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5043472483716744502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5043472483716744500}
+  - component: {fileID: 5043472483716744501}
+  m_Layer: 0
+  m_Name: UnitInit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5043472483716744500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5043472483716744502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 551.9827, y: 336.76376, z: -620.875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5043472483716744501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5043472483716744502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf24e80ae8a4ef4c9285c1ed6f04db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordsmanHP: 35
+  swordsmanAttack: 5
+  swordsmanHitSpeed: 0.5
+  spearmanHP: 40
+  spearmanAttack: 15
+  sparmanHitSpeed: 1
+  cavarlyHP: 70
+  cavarlyAttack: 15
+  cavarlyHitSpeed: 1
+  knightHP: 150
+  knightAttack: 25
+  knightHitSpeed: 1
+  mageHP: 50
+  mageAttack: 20
+  mageHitSpeed: 2

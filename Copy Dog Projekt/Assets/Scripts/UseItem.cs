@@ -16,7 +16,7 @@ public class UseItem : MonoBehaviour
         item1 = GetComponent<Button>();
     }
 
-   /* public void Update()
+   /*public void Update()
     {
         if (Input.GetKeyDown("j"))
         {
@@ -34,8 +34,8 @@ public class UseItem : MonoBehaviour
         {
             UseItem3();
         }
-    }
-   */
+    }*/
+   
 
     public void UseItem1()
     {

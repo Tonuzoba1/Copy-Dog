@@ -10,6 +10,8 @@ public class CharacterMovement : MonoBehaviour
     public Rigidbody2D rb;
     public float speed;
 
+    [SerializeField] private float jumpSpeed;
+
     private CharacterCombat charComb;
 
     //meat counter 
@@ -28,8 +30,11 @@ public class CharacterMovement : MonoBehaviour
     public TextMeshProUGUI mpCounter;
 
     // Start is called before the first frame update
-    void Start() { 
-    
+    void Start() {
+
+        Physics2D.IgnoreLayerCollision(8, 13);
+        Physics2D.IgnoreLayerCollision(8, 9);
+
         rb = GetComponent<Rigidbody2D>();
         charComb = GetComponent<CharacterCombat>();
 
@@ -47,7 +52,7 @@ public class CharacterMovement : MonoBehaviour
         SliderUpdate();
         MeatUpdate();
 
-        
+
 
     }
 
@@ -70,7 +75,9 @@ public class CharacterMovement : MonoBehaviour
         }
 
 
+
     }
+
 
     void SliderUpdate()
     {
@@ -82,7 +89,6 @@ public class CharacterMovement : MonoBehaviour
         hpCounter.text = charComb.heroHealth.ToString();
         mpCounter.text = charComb.heroMana.ToString();
 
-        //Debug.Log(progressSlider.value);
     }
 
     void MeatUpdate()
@@ -106,3 +112,52 @@ public class CharacterMovement : MonoBehaviour
     // 622 - 587 = 147
     // 1% 0,35
 }
+
+/*public class CharacterMovement : MonoBehaviour
+{
+
+    public Rigidbody2D rb;
+    public float speed;
+
+    void Start()
+    {
+
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        Movement();
+
+    }
+
+    void Movement()
+    {
+        float x = Input.GetAxisRaw("Horizontal");
+        float moveBy = x * speed;
+        rb.velocity = new Vector2(moveBy, rb.velocity.y);
+        //a velocity változtatja a karakter sebességét. Ezt szorozzuk be az axissel így tudja merre menjen.
+
+        if (x < 0)
+        {
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+
+        }
+
+        if (x > 0)
+        {
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+
+
+    }
+
+
+
+        
+
+
+    
+    }
+}*/
+

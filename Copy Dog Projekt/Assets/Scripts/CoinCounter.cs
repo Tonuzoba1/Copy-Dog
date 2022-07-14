@@ -19,6 +19,7 @@ public class CoinCounter : MonoBehaviour
 
     public void CountCoins()
     {
-        coinText.text = PlayerStats.playerCoins.ToString();
+        int coins = Mathf.RoundToInt(PlayerStats.playerCoins);
+        coinText.text = PlayerStats.playerCoins.ToString("F0");
     }
 }

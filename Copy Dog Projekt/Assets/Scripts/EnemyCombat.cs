@@ -10,29 +10,41 @@ public class EnemyCombat : MonoBehaviour
     //támadás
     public Transform attackPoint;
     public float attackRange = 0.3f;
-    public int attackDamage = 10;
+    public float attackDamage = 10f;
+    //public Vector3 attackRangeVector;
 
     public LayerMask allyLayers;
 
     public bool combatInProgress = false;
-    public bool hitInProgress = false;
+    [SerializeField] private bool hitInProgress = false;
+    [SerializeField] private bool isSworsdsman = false;
+    [SerializeField] private bool isHammer = false;
+    [SerializeField] private bool isCavarly = false;
+    [SerializeField] private bool isKnight = false;
+    [SerializeField] private bool isMasterSwordsman = false;
 
+    /// <summary>
+    /// Az éppen az érzékelési körében található karakterek tömbbje
+    /// </summary>
     public Collider2D[] hitAllies;
     //támadás vége
 
 
     //saját érték
-    public int maxHealth = 100;
-    private int currentHealth;
+    public float maxHealth = 100;
+    private float currentHealth;
+
+    [SerializeField] private float hitSpeed;
     //saját érték vége
 
-    public int getDamage;
+    public float getDamage;
     public GameObject damagePopup;
     public Transform damagePopupPos;
 
 
     //hp slider
     public Slider hpSlider;
+    [SerializeField] private GameObject hpSliderObject;
     //hp slider vége
 
     void Start()
@@ -49,12 +61,71 @@ public class EnemyCombat : MonoBehaviour
         if (enemyMovementScript.isCollidedwAlly && !hitInProgress)
         {
             Attack();
-            //Debug.Log(allyMvmntScript.isCollidedwEnemy);
 
         }
     }
 
+    /// <summary>
+    /// Frissíti a player statban az új értékét a társ karaktereknek
+    /// Oda vissza frissít. Előbb lehúzza a statból az aktuálisat majd visszamenti
+    /// </summary>
+    public void AllyStatUpdater()
+    {
+        //frissíti a statban az új értékét a karaktereknek
 
+        if (isSworsdsman)
+        {
+            maxHealth = EnemyStats.enemyStats[0].hp;
+            attackDamage = EnemyStats.enemyStats[0].attack;
+            hitSpeed = EnemyStats.enemyStats[0].hitSpeed;
+
+            EnemyStats.enemyStats[0].hp = maxHealth;
+            EnemyStats.enemyStats[0].attack = attackDamage;
+            EnemyStats.enemyStats[0].hitSpeed = hitSpeed;
+
+        }
+        else if (isHammer)
+        {
+            maxHealth = EnemyStats.enemyStats[1].hp;
+            attackDamage = EnemyStats.enemyStats[1].attack;
+            hitSpeed = EnemyStats.enemyStats[1].hitSpeed;
+
+            EnemyStats.enemyStats[1].hp = maxHealth;
+            EnemyStats.enemyStats[1].attack = attackDamage;
+            EnemyStats.enemyStats[1].hitSpeed = hitSpeed;
+        }
+        else if (isCavarly)
+        {
+            maxHealth = EnemyStats.enemyStats[2].hp;
+            attackDamage = EnemyStats.enemyStats[2].attack;
+            hitSpeed = EnemyStats.enemyStats[2].hitSpeed;
+
+            EnemyStats.enemyStats[2].hp = maxHealth;
+            EnemyStats.enemyStats[2].attack = attackDamage;
+            EnemyStats.enemyStats[2].hitSpeed = hitSpeed;
+        }
+        else if (isKnight)
+        {
+            maxHealth = EnemyStats.enemyStats[3].hp;
+            attackDamage = EnemyStats.enemyStats[3].attack;
+            hitSpeed = EnemyStats.enemyStats[3].hitSpeed;
+
+            EnemyStats.enemyStats[3].hp = maxHealth;
+            EnemyStats.enemyStats[3].attack = attackDamage;
+            EnemyStats.enemyStats[3].hitSpeed = hitSpeed;
+        }
+        else if (isMasterSwordsman)
+        {
+            maxHealth = EnemyStats.enemyStats[4].hp;
+            attackDamage = EnemyStats.enemyStats[4].attack;
+            hitSpeed = EnemyStats.enemyStats[4].hitSpeed;
+
+            EnemyStats.enemyStats[4].hp = maxHealth;
+            EnemyStats.enemyStats[4].attack = attackDamage;
+            EnemyStats.enemyStats[4].hitSpeed = hitSpeed;
+        }
+
+    }
     void Attack()
     {
         //detect
@@ -81,39 +152,38 @@ public class EnemyCombat : MonoBehaviour
     IEnumerator utes()
     {
         hitInProgress = true;
-        WaitForSeconds wfs = new WaitForSeconds(1f);
+        WaitForSeconds wfs = new WaitForSeconds(hitSpeed);
         
         //egy másodpercet vár az ütéssel - ezt majd ki kell szervezni változóba ha több fajta karakter lesz h változzon a cooldown
         //mindegyikre üt aki benne van a rangeben és így belekerül a tömbbe
         if(hitAllies.Length != 0 && hitAllies[0] != null) {
+            
 
-            if (hitAllies[0].tag == "Ally")
+                if (hitAllies[0].tag == "Ally" && isHammer)
+                {
+                    hitAllies[0].GetComponent<AllyCombat>().PushBack();
+                    hitAllies[0].GetComponent<AllyCombat>().TakeDamage(attackDamage);
+                }
+
+               else if (hitAllies[0].tag == "Player" && isHammer)
+                {
+
+                    hitAllies[0].GetComponent<CharacterCombat>().PushBack();
+                    hitAllies[0].GetComponent<CharacterCombat>().TakeDamage(attackDamage);
+                }
+
+
+           else if (hitAllies[0].tag == "Ally" && !isHammer)
             {
+
                 hitAllies[0].GetComponent<AllyCombat>().TakeDamage(attackDamage);
             }
 
-            if (hitAllies[0].tag == "Player")
+           else if (hitAllies[0].tag == "Player" && !isHammer)
             {
                 hitAllies[0].GetComponent<CharacterCombat>().TakeDamage(attackDamage);
             }
 
-            //kiválasztja az elsőt a tömbből és azt sebzi így elkerülve a több krakter sebzését egyszerre
-
-
-            /*foreach (Collider2D ally in hitAllies)
-        {
-            combatInProgress = true;
-                if(ally.tag == "Ally")
-                {
-                    ally.GetComponent<AllyCombat>().TakeDamage(attackDamage);
-                }
-
-                if(ally.tag == "Player")
-                {
-                    ally.GetComponent<CharacterCombat>().TakeDamage(attackDamage);
-                }
-            Debug.Log("Damage " + ally.name);
-            }*/
         }
         yield return wfs;
         hitInProgress = false;
@@ -127,11 +197,17 @@ public class EnemyCombat : MonoBehaviour
             return;
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        //Gizmos.DrawCube(attackPoint.position, new Vector3(attackRange, attackRange, attackRange));
     }
 
     
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
+        if (!hpSliderObject.activeSelf)
+        {
+            hpSliderObject.SetActive(true);
+        }
+
         getDamage = damage;
         currentHealth -= damage;
         hpSlider.value = currentHealth;
@@ -143,10 +219,15 @@ public class EnemyCombat : MonoBehaviour
         }
     }
 
+    public void PushBack()
+    {
+        transform.position = new Vector3(transform.position.x + 2, transform.position.y, transform.position.z);
+    }
+
     //karakter halála
     void Die()
     {
-        PlayerStats.playerCoins += attackDamage / 2;
+        PlayerStats.playerCoins += attackDamage / 4;
         Debug.Log(PlayerStats.playerCoins + " érmék száma");
         Destroy(gameObject);
     }

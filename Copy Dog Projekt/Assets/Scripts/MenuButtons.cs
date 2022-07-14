@@ -16,6 +16,7 @@ public class MenuButtons : MonoBehaviour
     public void StartLVL1EXP()
     {
         SceneManager.LoadScene(3);
+        EnemyStats.EnemyPowerUp();
     }
 
     public void Quit()
@@ -43,5 +44,17 @@ public class MenuButtons : MonoBehaviour
     public void Shopping()
     {
         SceneManager.LoadScene(2);
+    }
+
+    public void Units()
+    {
+        SceneManager.LoadScene(4);
+    }
+
+    public void RestartAfterWin()
+    {
+        PlayerStats.reachedLevel--;
+        SceneManager.LoadScene(3);
+
     }
 }

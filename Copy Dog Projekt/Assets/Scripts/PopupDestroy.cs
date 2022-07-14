@@ -45,7 +45,7 @@ public class PopupDestroy : MonoBehaviour
 
     }
 
-    public void setPopupText(int damage)
+    public void setPopupText(float damage)
     {
         popUpText.text = damage.ToString();
     }
