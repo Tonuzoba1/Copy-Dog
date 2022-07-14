@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AllyMovement : MonoBehaviour
 {
@@ -24,14 +22,11 @@ public class AllyMovement : MonoBehaviour
         speed = maxSpeed;
 
         GetComponent<SpriteRenderer>().sortingOrder = Mathf.RoundToInt(-transform.position.y * 100);
-
-
     }
 
     void FixedUpdate()
     {
         rb.velocity = new Vector2(speed, rb.velocity.y);        
-
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -56,9 +51,6 @@ public class AllyMovement : MonoBehaviour
             rb.velocity = new Vector2(speed, rb.velocity.y);
             isCollidedwEnemy = true;
         }
-
-
-
     }
 
     //ha elhagyja/megöli az ellenséget akkor továbbmegy
@@ -75,11 +67,9 @@ public class AllyMovement : MonoBehaviour
     }
 
     public void MoveForward()
-    {
-         
+    {       
         speed = maxSpeed;
-        isCollidedwEnemy = false;
-        
+        isCollidedwEnemy = false;    
     }
 
     public void OnCollisionStay2D(Collision2D collision)

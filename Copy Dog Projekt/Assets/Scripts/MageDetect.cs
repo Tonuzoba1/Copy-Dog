@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MageDetect : MonoBehaviour
 {
@@ -11,7 +9,6 @@ public class MageDetect : MonoBehaviour
     void Start()
     {
         allyMovementScript = GetComponent<AllyMovement>();
-
     }
 
     void Update()

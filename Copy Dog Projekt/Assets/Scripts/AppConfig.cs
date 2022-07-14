@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AppConfig : MonoBehaviour
 {
@@ -10,5 +8,4 @@ public class AppConfig : MonoBehaviour
         Application.targetFrameRate = 60;
         Time.timeScale = 1;
     }
-
 }

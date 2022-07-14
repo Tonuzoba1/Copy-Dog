@@ -1,19 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class enemyMovement : MonoBehaviour
 {
-
     public Rigidbody2D rb;
     public float speed;
     public bool isCollidedwAlly = false;
-
     public GameObject endOfMap;
-
     public EnemyCombat enemyCombatScript;
-
-    
 
     void Start()
     {
@@ -33,11 +26,6 @@ public class enemyMovement : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.tag == "Ground")
-        {
-            Debug.Log("földet ért");
-        }
-
 
         if (collision.collider.tag == "EndOfMap")
         {
@@ -54,9 +42,6 @@ public class enemyMovement : MonoBehaviour
         }
     }
 
-
-
-
     public void OnCollisionExit2D(Collision2D collision)
     {
         MoveForward();
@@ -67,19 +52,15 @@ public class enemyMovement : MonoBehaviour
     {
         if (collision.collider.tag == "Ally" && !isCollidedwAlly)
         {
-
             speed = 0;
             rb.velocity = new Vector2(speed, rb.velocity.y);
             isCollidedwAlly = true;
         }
     }
 
-
     void MoveForward()
     {
-
         speed = 3;
         isCollidedwAlly = false;
-
     }
 }

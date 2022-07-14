@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class FortBehav : MonoBehaviour
@@ -66,7 +64,6 @@ public class FortBehav : MonoBehaviour
             damageLvl = 1;
             }
 
-
             switch (damageLvl)
             {
                 case 0:
@@ -110,7 +107,6 @@ public class FortBehav : MonoBehaviour
                         break;
                     }
             }
-
         }
     }
 
@@ -124,16 +120,11 @@ public class FortBehav : MonoBehaviour
 
             winPanel.SetActive(true);
             hpSliderObject.SetActive(false);
-
-
         } else
         {
             currentHealth -= damage;
         }
 
         hpSlider.value = currentHealth;
-
-
-
     }
 }

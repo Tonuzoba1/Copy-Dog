@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EffectMovement : MonoBehaviour
@@ -7,10 +6,8 @@ public class EffectMovement : MonoBehaviour
     public float floatUpSpeed = 3f;
     public float floatSideSpeed;
 
-
     void Start()
     {
-
         StartCoroutine(countdown());
         RandomSideSpeed();
     }
@@ -24,10 +21,7 @@ public class EffectMovement : MonoBehaviour
         } else
         {
             floatSideSpeed -= 0.03f;
-        }
-
-
-        
+        }        
     }
 
     IEnumerator countdown()
@@ -37,7 +31,6 @@ public class EffectMovement : MonoBehaviour
         yield return wfs;
 
         Destroy(gameObject);
-
     }
 
     private void RandomSideSpeed() {

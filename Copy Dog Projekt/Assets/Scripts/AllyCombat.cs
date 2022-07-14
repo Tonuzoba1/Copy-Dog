@@ -56,12 +56,6 @@ public class AllyCombat : MonoBehaviour
     {
         allyMvmntScript = gameObject.GetComponent<AllyMovement>();
 
-        //upgraddel növeljük az értékeket
-        /*MaxHealth = MaxHealth * PlayerStats.swordsmanPowerup;
-        attackDamage = attackDamage * PlayerStats.swordsmanPowerup;*/
-
-
-
         AllyStatUpdater();
 
         currentHealth = MaxHealth;
@@ -85,17 +79,7 @@ public class AllyCombat : MonoBehaviour
         if(!combatInProgress && !hitInProgress)
         {
             allyMvmntScript.MoveForward();
-        }
-
-        /*if(hitEnemies.Length > 1 && hitEnemies[0] == null)
-        {
-            Debug.Log("minek ment oda?");
-            hitEnemies[0] = hitEnemies[1];
-            hitEnemies[1] = null;
-            
-        }*/
-
-        
+        } 
     }
 
     /// <summary>
@@ -160,7 +144,6 @@ public class AllyCombat : MonoBehaviour
             PlayerStats.allyStats[4].hitSpeed = hitSpeed;
 
         }
-
     }
     void Attack()
     {
@@ -290,9 +273,6 @@ public class AllyCombat : MonoBehaviour
 
     void Die()
     {
-        //animator.SetBool("Dead", true);
-        //Destroy(gameObject, 1f);
-
         Destroy(gameObject);
     }
     //karakter halála vége
@@ -307,6 +287,4 @@ public class AllyCombat : MonoBehaviour
         popupScript.setPopupText(getDamage);
 
     }
-
-
 }

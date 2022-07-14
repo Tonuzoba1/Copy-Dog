@@ -1,20 +1,15 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyCombat : MonoBehaviour
 {
     public enemyMovement enemyMovementScript;
-
     //támadás
     public Transform attackPoint;
     public float attackRange = 0.3f;
     public float attackDamage = 10f;
-    //public Vector3 attackRangeVector;
-
     public LayerMask allyLayers;
-
     public bool combatInProgress = false;
     [SerializeField] private bool hitInProgress = false;
     [SerializeField] private bool isSworsdsman = false;
@@ -72,7 +67,6 @@ public class EnemyCombat : MonoBehaviour
     public void AllyStatUpdater()
     {
         //frissíti a statban az új értékét a karaktereknek
-
         if (isSworsdsman)
         {
             maxHealth = EnemyStats.enemyStats[0].hp;
@@ -124,7 +118,6 @@ public class EnemyCombat : MonoBehaviour
             EnemyStats.enemyStats[4].attack = attackDamage;
             EnemyStats.enemyStats[4].hitSpeed = hitSpeed;
         }
-
     }
     void Attack()
     {
@@ -144,8 +137,6 @@ public class EnemyCombat : MonoBehaviour
 
         }
         //hit
-
-
     }
 
     //időzíti az ütést
@@ -156,8 +147,7 @@ public class EnemyCombat : MonoBehaviour
         
         //egy másodpercet vár az ütéssel - ezt majd ki kell szervezni változóba ha több fajta karakter lesz h változzon a cooldown
         //mindegyikre üt aki benne van a rangeben és így belekerül a tömbbe
-        if(hitAllies.Length != 0 && hitAllies[0] != null) {
-            
+        if(hitAllies.Length != 0 && hitAllies[0] != null) {           
 
                 if (hitAllies[0].tag == "Ally" && isHammer)
                 {
@@ -171,7 +161,6 @@ public class EnemyCombat : MonoBehaviour
                     hitAllies[0].GetComponent<CharacterCombat>().PushBack();
                     hitAllies[0].GetComponent<CharacterCombat>().TakeDamage(attackDamage);
                 }
-
 
            else if (hitAllies[0].tag == "Ally" && !isHammer)
             {
@@ -187,7 +176,6 @@ public class EnemyCombat : MonoBehaviour
         }
         yield return wfs;
         hitInProgress = false;
-
     }
 
     //megjeleníti az ütés range-t
@@ -199,7 +187,6 @@ public class EnemyCombat : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         //Gizmos.DrawCube(attackPoint.position, new Vector3(attackRange, attackRange, attackRange));
     }
-
     
     public void TakeDamage(float damage)
     {
@@ -243,5 +230,4 @@ public class EnemyCombat : MonoBehaviour
         popupScript.setPopupText(getDamage);
 
     }
-
 }
